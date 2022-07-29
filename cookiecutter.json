@@ -1,4 +1,4 @@
 {
-  "project_name": ==PROJECT_NAME==,
-  "user": ==PROJECT_USER==
+  "project_name": "==PROJECT_NAME==",
+  "user": "==PROJECT_USER=="
 }
