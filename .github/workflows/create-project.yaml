@@ -14,7 +14,7 @@ on:
 
 jobs:
   create-project:
-    name: Create project {{ github.event.inputs.project_name }} for {{ github.event.inputs.user}}
+    name: Create project ${{ github.event.inputs.project_name }} for ${{ github.event.inputs.user}}
     runs-on: ubuntu-latest
     steps:
       - name: "Clonning repo"
@@ -27,8 +27,8 @@ jobs:
 
       - name: "Apply parameters over the template"
         run: |-
-          sed -i "s/==PROJECT_NAME==/{{ github.event.inputs.project_name }}/g" cookiecutter.json
-          sed -i "s/==PROJECT_USER==/{{ github.event.inputs.user }}/g" cookiecutter.json
+          sed -i "s/==PROJECT_NAME==/${{ github.event.inputs.project_name }}/g" cookiecutter.json
+          sed -i "s/==PROJECT_USER==/${{ github.event.inputs.user }}/g" cookiecutter.json
 
       - name: "Generate project from template"
         run: |-
