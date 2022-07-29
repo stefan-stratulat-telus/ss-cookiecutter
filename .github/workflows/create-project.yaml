@@ -22,7 +22,7 @@ jobs:
 
       - name: "Init python interpreter from venv"
         run: |-
-          source venv/bin/activate
+          source /venv/bin/activate
 
       - name: "Apply parameters over the template"
         run: |-
