@@ -30,7 +30,7 @@ jobs:
           pip install --upgrade pip
           python3.9 -m venv venv
           source /venv/bin/activate
-          python -m pip install --upgrade cookiecutter
+          python3.9 -m pip install --upgrade cookiecutter
 
       - name: "Apply parameters over the template"
         run: |-
