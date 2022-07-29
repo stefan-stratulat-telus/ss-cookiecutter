@@ -25,13 +25,6 @@ jobs:
         with:
           python-version: 3.9
 
-      - name: "Init python interpreter from venv"
-        run: |-
-          pip install --upgrade pip
-          python3.9 -m venv venv
-          source venv/bin/activate
-          python3.9 -m pip install --upgrade cookiecutter
-
       - name: "Apply parameters over the template"
         run: |-
           sed -i "s/==PROJECT_NAME==/{{ github.event.inputs.project_name }}/g" cookiecutter.json
@@ -39,4 +32,8 @@ jobs:
 
       - name: "Generate project from template"
         run: |-
+          pip install --upgrade pip
+          python3.9 -m venv venv
+          source venv/bin/activate
+          python3.9 -m pip install --upgrade cookiecutter      
           cookiecutter --no-input .
