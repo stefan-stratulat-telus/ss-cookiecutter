@@ -1,0 +1,34 @@
+name: Create new project
+
+on:
+  workflow_dispatch:
+    inputs:
+      project_name:
+        type: string
+        description: Project name
+        required: true
+      user:
+        type: string
+        description: User name
+        required: true
+
+jobs:
+  create-project:
+    name: Create project {{ github.event.inputs.project_name }} for {{ github.event.inputs.user}}
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Clonning repo"
+        uses: actions/checkout@v3
+
+      - name: "Init python interpreter from venv"
+        run: |-
+          source venv/bin/activate
+
+      - name: "Apply parameters over the template"
+        run: |-
+          sed -i "s/==PROJECT_NAME==/{{ github.event.inputs.project_name }}/g" cookiecutter.json
+          sed -i "s/==PROJECT_USER==/{{ github.event.inputs.user }}/g" cookiecutter.json
+
+      - name: "Generate project from template"
+        run: |-
+          cookiecutter --no-input .
